@@ -364,6 +364,7 @@ end
 
 function Render:refresh(force)
     self.force = force or self.force
+    self.calmDown = config.calm_down  -- Update calmDown from config
     self.throttledRefresh()
 end
 
@@ -392,6 +393,7 @@ function Render:start(force)
         if force then
             self.throttledRefresh:cancel()
         end
+        self.calmDown = config.calm_down  -- Update calmDown from config
         self:refresh(force)
     end
 end
@@ -440,3 +442,4 @@ function Render:initialize(namespace)
 end
 
 return Render
+
